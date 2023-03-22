@@ -1,0 +1,13 @@
+<?php
+
+namespace <EntityNamespace>;
+
+use Core\Engine\Helper;
+
+class <EntityName> extends Helper
+{
+    public function index()
+    {
+
+    }
+}

@@ -1,0 +1,13 @@
+<?php
+
+namespace <EntityNamespace>;
+
+use Core\Engine\Controller;
+
+class <EntityName> extends Controller
+{
+    public function index()
+    {
+
+    }
+}

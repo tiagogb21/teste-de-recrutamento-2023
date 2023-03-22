@@ -1,0 +1,30 @@
+{
+    "name": "decolip/teste-recrutamento",
+    "description": "Teste de Recrutamento do @cansei_vendi",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "./core",
+            "App\\": "./app",
+            "App\\Controllers\\": "./app/controllers",
+            "App\\Models\\": "./app/models",
+            "App\\Services\\": "./app/services",
+            "App\\Helpers\\": "./app/helpers",
+            "App\\Views\\": "./app/views",
+            "App\\Console\\": "./app/console"
+        }
+    },
+    "authors": [
+        {
+            "name": "André Luis",
+            "email": "andreluis@canseivendi.com.br"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.0",
+        "vlucas/phpdotenv": "5.5.x-dev",
+        "symfony/console": "5.4.x-dev"
+    }
+}

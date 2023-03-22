@@ -1,0 +1,98 @@
+<html lang="pt-pt">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ title }}</title>
+		<link rel="stylesheet" href="https://kit.fontawesome.com/860a93fa84.css" crossorigin="anonymous">
+		<link rel="stylesheet" href="/assets/css/main.css">
+		<link rel="stylesheet" href="/assets/css/account/seller.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container pt-2 mb-5">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="#">Início</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="#">Minha conta</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="/account/seller">Área do Vendedor</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="/account/seller/bankaccounts">Contas Bancárias</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						Adicionar Conta Bancária
+					</li>
+				</ol>
+			</nav>
+			<div class="row">
+				<div name="left-menu-area" class="col-md-3">
+					{{ left_menu |raw }}
+				</div>
+				<div name="right-card-area" class="col-md-9">
+					<div class="card">
+						<div class="card-body">
+							<div name="title-area" class="col-md-12 mb-3">
+								<h5>Adicionar Conta Bancária</h5>
+							</div>
+							<div class="col-md-12 mb-3">
+								<div class="alert alert-info" role="alert">
+									<b>Observação:
+									</b>
+									A conta registrada necessariamente precisa ser de mesma titularidade!
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<div class="form-group required">
+										<label class="control-label mb-2">Tipo da Conta:</label>
+										<select class="form-control" name="type" required="">
+											<option selected="" disabled="">Selecione...</option>
+											<option value="checking">Conta Corrente</option>
+											<option value="saving">Conta Poupança</option>
+											<option value="payment">Conta Salário</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6 mb-3">
+									<div class="form-group required">
+										<label class="control-label mb-2">Banco:</label>
+										<select class="form-control" name="type" required="">
+											<option selected="" disabled="">Selecione...</option>
+											<option value="checking">Banco 1</option>
+											<option value="saving">Banco 2</option>
+											<option value="payment">Banco 3</option>
+											<option value="payment">Banco 4</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6 mb-3">
+									<div class="form-group required">
+										<label class="control-label mb-2">Agência:</label>
+										<input placeholder="Número com Digito" class="form-control" name="type" required=""/>
+									</div>
+								</div>
+								<div class="col-md-6 mb-3">
+									<div class="form-group required">
+										<label class="control-label mb-2">Conta:</label>
+										<input placeholder="Número com Digito" class="form-control" name="type" required=""/>
+									</div>
+								</div>
+								<div class="col-md-12 d-flex justify-content-end">
+									<button type="button" class="btn btn-dark">ADICIONAR</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://kit.fontawesome.com/860a93fa84.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	</body>
+</html>

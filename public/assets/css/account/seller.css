@@ -1,0 +1,37 @@
+.container-product-image tspan {
+    font-size: 15px !important;
+}
+
+a[class="btn btn-dark"] {
+    color: white !important;
+}
+
+.product-image-card img {
+    width: 60px;
+    height: 75px;
+}
+
+.historic.cancelled {
+    background-color: #e8b9b9;
+}
+
+.historic.transfer {
+    background-color: #e8e4b9;
+}
+
+.historic.balance-adjustment {
+    background-color: #8df3f2;
+}
+
+.historic.solt {
+    background-color: #b9e8b9;
+}
+
+.historic-money-label {
+    font-size: 18px;
+}
+
+.historic-liq-label b,
+.historic-liq-label {
+    font-size: 12.3px;
+}

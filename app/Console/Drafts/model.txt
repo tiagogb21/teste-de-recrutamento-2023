@@ -1,0 +1,10 @@
+<?php
+
+namespace <EntityNamespace>;
+
+use Core\Engine\Model;
+
+class <EntityName> extends Model
+{
+
+}

@@ -1,0 +1,14 @@
+* {
+    font-size: 14px;
+}
+
+a {
+    cursor: pointer !important;
+    color: #615e61 !important;
+    text-decoration: none !important;
+}
+
+li[aria-current="page"],
+a[aria-current="page"] {
+    color: #d57d00 !important;
+}

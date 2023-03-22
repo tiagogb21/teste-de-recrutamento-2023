@@ -1,0 +1,107 @@
+<div name="balance-area" class="col-md-12 mb-3">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card p-0">
+				<div class="card-header">
+					Saldo Disponível
+				</div>
+				<div class="card-body">
+					<h4 class="text-center mt-3">
+						R$
+						{{ balances.available }}
+					</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card p-0">
+				<div class="card-header">
+					Saldo Futuro
+				</div>
+				<div class="card-body">
+					<h4 class="text-center mt-3">
+						R$
+						{{ balances.future }}
+					</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card p-0">
+				<div class="card-header">
+					Saldo Bloqueado
+				</div>
+				<div class="card-body">
+					<h4 class="text-center mt-3">
+						R$
+						{{ balances.blocked }}
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div name="data-filter-form" class="col-md-12 mb-4">
+	<div class="row">
+		<div class="col-6">
+			<label class="form-label">Data início</label>
+			<input type="date" class="form-control" placeholder="">
+		</div>
+		<div class="col-6">
+			<label class="form-label">Data fim</label>
+			<input type="date" class="form-control" placeholder="">
+		</div>
+	</div>
+</div>
+<div name="historic-area" class="col-md-12">
+	<div class="card p-0">
+		<div class="card-header">
+			Histórico
+		</div>
+		<div class="card-body">
+			{% if histories %}
+				{% for history in histories %}
+					<div style="background-color: {{ history.history_type.color }};" name"card" class="col-md-12 p-2 mb-2 historic">
+						<div class="row">
+							<div class="col-md-4">
+								<div>
+									<b>{{ history.history_type.description }}</b>
+								</div>
+								<div>
+									<label class="historic-money-label mb-1">R$
+										{{ history.transaction.value }}</label>
+								</div>
+							</div>
+							<div class="col-md-2">
+								{% if history.transaction.product_id %}
+									<div class="product-image-card">
+										<img src="{{ history.transaction.product.image }}" class="img-thumbnail" alt="...">
+									</div>
+								{% endif %}
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-9">
+										{% if history.note %}
+											<div>
+												<b>Motivo:</b>
+											</div>
+											<div>
+												<p>{{ history.note }}</p>
+											</div>
+										{% endif %}
+									</div>
+									<div class="col-md-3">{{ history.date_added }}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
+				<div class="text-center">
+					Não há registros de histórico ainda!
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>

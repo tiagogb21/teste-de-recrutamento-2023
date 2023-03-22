@@ -1,0 +1,35 @@
+Options +FollowSymlinks
+
+# Prevent Directoy listing
+Options -Indexes
+
+# Prevent Direct Access to files
+<FilesMatch "(?i)((\.tpl|.twig|\.ini|\.log|(?<!robots)\.txt))">
+ Require all denied
+</FilesMatch>
+
+# SEO URL Settings
+RewriteEngine On
+
+RewriteBase /
+
+RewriteCond %{THE_REQUEST} \ /+([^\?\ ]+)\.html
+RewriteRule ^([^?]*) index.php?_route_=%1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
+
+#RewriteCond %{QUERY_STRING} ^route=common/home$
+#RewriteCond %{REQUEST_METHOD} !^POST$
+#RewriteRule ^index\.php$ http://%{HTTP_HOST}? [R=301,L]
+
+#RewriteCond %{THE_REQUEST} \ /+index\.php\?_route_=([^\ &]+)
+#RewriteRule ^ /%1? [L,R]
+
+# 3. Set max upload file size. Most hosts will limit this and not allow it to be overridden but you can try
+php_value upload_max_filesize 999M
+
+# 4. set max post size. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+php_value post_max_size 999M

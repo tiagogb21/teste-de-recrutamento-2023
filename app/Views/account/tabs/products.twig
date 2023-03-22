@@ -1,0 +1,171 @@
+<p>PS: Querido cliente, a lista de produtos ainda está sendo atualizada. Caso, não apareça algum produto seu, não se preocupe.
+Obrigada pela compreensão!</p>
+<div name="sub-tab-area" class="col-md-12 mb-3">
+    <ul class="nav nav-tabs" id="product-tabs">
+        {% for tab in product_tabs %}
+            <li class="nav-item">
+                <a
+                    {% if selected_product_tab == loop.index %}
+                        aria-current="page"
+                        class="nav-link active"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                >
+                    {{ tab.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="col-md-12 mb-3 div-product-status">
+    <div name="product-card" class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 container-product-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="250">
+                        <rect width="249" height="249" x="0.5" y="0.5" id="rect2824" fill="#ffffff" stroke="#000" stroke-width="1"></rect>
+                        <text x="64.648438" y="79.863152" id="text2818" font-size="24" text-align="center" text-anchor="middle" fill="#000" stroke="none" font-family="Montserrat"><tspan x="125" y="115" id="tspan2820">Sem imagem</tspan><tspan x="125" y="145" id="tspan2822">Por enquanto</tspan></text>
+                    </svg>
+                </div>
+                <div class="col-md-8 p-4 pt-0">
+                    <h5 class="mb-5">Sandália Charlotte Olympia Bruce Vermelho</h5>
+                    <label class="mb-2">
+                        <b>Sku</b>: CV04034
+                    </label>
+                    <label>
+                        <b>Descrição</b>: Sapato seminovo, em ótimo estado de conservação. Possui sola gasta e sinais de uso na palmilha. Não acompanha dustbag. Sola 37 Europa. Salto 16cm.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex flex-row justify-content-end">
+            <button class="btn btn-dark" href="" target="_blank">VER NO SITE</button>
+        </div>
+    </div>
+    <div name="product-card" class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 container-product-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="250">
+                        <rect width="249" height="249" x="0.5" y="0.5" id="rect2824" fill="#ffffff" stroke="#000" stroke-width="1"></rect>
+                        <text x="64.648438" y="79.863152" id="text2818" font-size="24" text-align="center" text-anchor="middle" fill="#000" stroke="none" font-family="Montserrat"><tspan x="125" y="115" id="tspan2820">Sem imagem</tspan><tspan x="125" y="145" id="tspan2822">Por enquanto</tspan></text>
+                    </svg>
+                </div>
+                <div class="col-md-8 p-4 pt-0">
+                    <h5 class="mb-5">Sandália Charlotte Olympia Bruce Vermelho</h5>
+                    <label class="mb-2">
+                        <b>Sku</b>: CV04034
+                    </label>
+                    <label>
+                        <b>Descrição</b>: Sapato seminovo, em ótimo estado de conservação. Possui sola gasta e sinais de uso na palmilha. Não acompanha dustbag. Sola 37 Europa. Salto 16cm.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex flex-row justify-content-end">
+            <button class="btn btn-dark" href="" target="_blank">VER NO SITE</button>
+        </div>
+    </div>
+</div>
+<div style="display: none;" class="col-md-12 mb-3 div-product-status">
+    <div name="product-card" class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 container-product-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="250">
+                        <rect width="249" height="249" x="0.5" y="0.5" id="rect2824" fill="#ffffff" stroke="#000" stroke-width="1"></rect>
+                        <text x="64.648438" y="79.863152" id="text2818" font-size="24" text-align="center" text-anchor="middle" fill="#000" stroke="none" font-family="Montserrat"><tspan x="125" y="115" id="tspan2820">Sem imagem</tspan><tspan x="125" y="145" id="tspan2822">Por enquanto</tspan></text>
+                    </svg>
+                </div>
+                <div class="col-md-8 p-4 pt-0">
+                    <h5 class="mb-5">Sandália Charlotte Olympia Bruce Vermelho</h5>
+                    <label class="mb-2">
+                        <b>Sku</b>: CV04034
+                    </label>
+                    <label>
+                        <b>Descrição</b>: Sapato seminovo, em ótimo estado de conservação. Possui sola gasta e sinais de uso na palmilha. Não acompanha dustbag. Sola 37 Europa. Salto 16cm.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex flex-row justify-content-end">
+            <button class="btn btn-dark" href="" target="_blank">VER NO SITE</button>
+        </div>
+    </div>
+</div>
+<div style="display: none;" class="col-md-12 mb-3 div-product-status">
+    <div name="product-card" class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 container-product-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="250">
+                        <rect width="249" height="249" x="0.5" y="0.5" id="rect2824" fill="#ffffff" stroke="#000" stroke-width="1"></rect>
+                        <text x="64.648438" y="79.863152" id="text2818" font-size="24" text-align="center" text-anchor="middle" fill="#000" stroke="none" font-family="Montserrat"><tspan x="125" y="115" id="tspan2820">Sem imagem</tspan><tspan x="125" y="145" id="tspan2822">Por enquanto</tspan></text>
+                    </svg>
+                </div>
+                <div class="col-md-8 p-4 pt-0">
+                    <h5 class="mb-5">Sandália Charlotte Olympia Bruce Vermelho</h5>
+                    <label class="mb-2">
+                        <b>Sku</b>: CV04034
+                    </label>
+                    <label>
+                        <b>Descrição</b>: Sapato seminovo, em ótimo estado de conservação. Possui sola gasta e sinais de uso na palmilha. Não acompanha dustbag. Sola 37 Europa. Salto 16cm.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex flex-row justify-content-end">
+            <button class="btn btn-dark" href="" target="_blank">VER NO SITE</button>
+        </div>
+    </div>
+        <div name="product-card" class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 container-product-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="250">
+                        <rect width="249" height="249" x="0.5" y="0.5" id="rect2824" fill="#ffffff" stroke="#000" stroke-width="1"></rect>
+                        <text x="64.648438" y="79.863152" id="text2818" font-size="24" text-align="center" text-anchor="middle" fill="#000" stroke="none" font-family="Montserrat"><tspan x="125" y="115" id="tspan2820">Sem imagem</tspan><tspan x="125" y="145" id="tspan2822">Por enquanto</tspan></text>
+                    </svg>
+                </div>
+                <div class="col-md-8 p-4 pt-0">
+                    <h5 class="mb-5">Sandália Charlotte Olympia Bruce Vermelho</h5>
+                    <label class="mb-2">
+                        <b>Sku</b>: CV04034
+                    </label>
+                    <label>
+                        <b>Descrição</b>: Sapato seminovo, em ótimo estado de conservação. Possui sola gasta e sinais de uso na palmilha. Não acompanha dustbag. Sola 37 Europa. Salto 16cm.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex flex-row justify-content-end">
+            <button class="btn btn-dark" href="" target="_blank">VER NO SITE</button>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example" class="mt-2 d-flex  justify-content-center">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script src="/assets/js/account/products.js"></script>

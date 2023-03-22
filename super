@@ -1,0 +1,18 @@
+<?php
+
+require __DIR__ . '/autoload.php';
+
+use App\Console\Commands\CreateView;
+use App\Console\Commands\CreateHelper;
+use App\Console\Commands\CreateController;
+use App\Console\Commands\CreateModel;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+
+$application->add(new CreateView);
+$application->add(new CreateHelper);
+$application->add(new CreateController);
+$application->add(new CreateModel);
+
+$application->run();
