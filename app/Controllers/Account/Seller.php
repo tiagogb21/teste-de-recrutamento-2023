@@ -2,10 +2,16 @@
 
 namespace App\Controllers\Account;
 
+use App\Models\Seller\Seller as SellerModel;
 use Core\Engine\Controller;
 
 class Seller extends Controller
 {
+    public function __construct($registry)
+    {
+        $this->registry = $registry;
+    }
+
     private function loader()
     {
         $this->load->model('account/balance');
@@ -114,12 +120,68 @@ class Seller extends Controller
 
     public function getForm($data)
     {
+        $isLoggedIn = false;
+
+        if (isset($_SESSION['customer_id'])) {
+            $isLoggedIn = true;
+        }
+
         $data['title']     = "Área do Vendedor";
         $data['tabs']      = $this->getTabs();
+        $data['header']    = $this->load->view('common/header');
+        $data['footer']    = $this->load->view('common/footer');
         $data['left_menu'] = $this->load->view('account/leftMenu');
 
-        $this->response->setOutput(
-            $this->load->view('account/seller', $data)
+        $data['isLoggedIn'] = $isLoggedIn;
+
+        $isLoggedIn ?
+            $this->response->setOutput(
+                $this->load->view('account/seller', $data)
+            )
+            :
+            $this->response->setOutput(
+                $this->load->view('components/cadastro', $data)
+            );
+    }
+
+    public function register()
+    {
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $telephone = $_POST['telephone'];
+        $password = $_POST['password'];
+        $confirmPassword = $_POST['confirm-password'];
+
+        $seller = new SellerModel($this->registry);
+        $seller->firstname = $firstname;
+        $seller->lastname = $lastname;
+        $seller->email = $email;
+        $seller->telephone = $telephone;
+        $seller->password = $password;
+        $seller->confirmPassword = $confirmPassword;
+
+        $result = $seller->create(
+            $seller->firstname,
+            $seller->lastname,
+            $seller->email,
+            $seller->telephone,
+            $seller->password,
+            $seller->confirmPassword
         );
+
+        if ($result) {
+            $this->response->setOutput(
+                $this->load->view('account/seller')
+            );
+        }
+
+        // if ($result) {
+        //     $this->setFlash('success', 'Usuário cadastrado com sucesso.');
+        //     return $this->redirectTo('/account/user');
+        // } else {
+        //     $this->setFlash('error', 'Ocorreu um erro ao cadastrar o usuário.');
+        //     return $this->redirectTo('/account/user');
+        // }
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="26px" viewBox="0 0 17 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ecommerce_bag</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Menu-Home-Desk" transform="translate(-1073.000000, -67.000000)" fill="#FFFFFF" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="1.2">
+            <g id="Group-2">
+                <g id="Group_7">
+                    <g id="Group_5" transform="translate(1033.000000, 68.600000)">
+                        <g id="ecommerce_bag" transform="translate(41.000000, 0.400000)">
+                            <g id="Group_2" transform="translate(0.000000, 5.631000)">
+                                <path d="M15.237,15.569 L0,15.569 L0,0 L15.237,0 L15.237,15.569 Z M0.662,14.906 L14.575,14.906 L14.575,0.662 L0.662,0.662 L0.662,14.906 Z" id="Path_1"></path>
+                            </g>
+                            <g id="Group_3" transform="translate(3.975000, 0.000000)">
+                                <path d="M7.287,7.95 L6.625,7.95 L6.625,3.644 C6.625,1.99763916 5.29036084,0.663 3.644,0.663 C1.99763916,0.663 0.663,1.99763916 0.663,3.644 L0.663,7.95 L0,7.95 L0,3.644 C0.0329479819,1.65528153 1.65450862,0.0603634823 3.6435,0.0603634823 C5.63249138,0.0603634823 7.25405202,1.65528153 7.287,3.644 L7.287,7.95 Z" id="Path_2"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
