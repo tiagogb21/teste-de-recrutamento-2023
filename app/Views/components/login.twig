@@ -1,46 +1,48 @@
-<html lang="pt-pt">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{{ title }}</title>
-		<link rel="stylesheet" href="/assets/css/account/seller.css">
-		<link rel="stylesheet" href="https://kit.fontawesome.com/860a93fa84.css" crossorigin="anonymous">
-		<link rel="stylesheet" href="/assets/css/main.css">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-	</head>
-	<body class="">
-    <div name="login-area">
-      {{ header |raw }}
-    </div>
+{% extends "common/home.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
     <div class="a">
       <nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<a href="#">Início</a>
-					</li>
-					<li class="breadcrumb-item">
-						<a href="#">Minha conta</a>
-					</li>
-					<li class="breadcrumb-item active" aria-current="page">
-						Acessar
-					</li>
-				</ol>
-			</nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Início</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="#">Minha conta</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Acessar</li>
+        </ol>
+      </nav>
     </div>
-  <div class="row justify-content-center h-75">
-    <div class="col-md-6 col-lg-5">
+    <div class="row justify-content-center h-75">
+      <div class="col-md-6 col-lg-5">
         <div class="card h-75">
           <div class="card-header bg-white border-0">
             <h5 class="card-title">Acesse sua conta</h5>
           </div>
           <div class="card-body justify-content-space-between">
-            <form class="h-100 d-flex flex-column justify-content-around">
+            <form
+              action="/costumer/login"
+              method="post"
+              class="h-100 d-flex flex-column justify-content-around"
+            >
               <div class="mb-3">
-                <input type="email" class="form-input form-control" id="email" placeholder="E-mail">
+                <input
+                  type="email"
+                  class="form-input form-control"
+                  id="email"
+                  placeholder="E-mail"
+                />
               </div>
               <div class="mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Senha">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Senha"
+                />
               </div>
               <div class="mb-3">
                 <div class="form-remember">
@@ -48,17 +50,18 @@
                 </div>
               </div>
               <div class="d-grid">
-                <button type="submit" class="btn btn-dark text-uppercase">entrar</button>
+                <button type="submit" class="btn btn-dark text-uppercase">
+                  entrar
+                </button>
               </div>
             </form>
           </div>
           <div class="card-footer bg-white border-0">
-            <p class="text-center"><a class="breadcrumb-item active" href="#">Não tenho conta</a></p>
+            <p class="text-center">
+              <a class="breadcrumb-item active" href="#">Não tenho conta</a>
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-    </div>
-  </body>
-</html>
+{% endblock %}
