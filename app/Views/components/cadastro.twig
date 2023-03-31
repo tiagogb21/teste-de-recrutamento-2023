@@ -34,52 +34,40 @@
                 <div class="col-md-6 mb-3">
                   <input
                     type="text"
-                    class="form-input form-control"
+                    class="form-input form-control {% if errors['firstname'] is defined %}is-invalid{% endif %}"
                     id="firstname"
                     placeholder="Nome"
                     name="firstname"
                   />
-                  {% if firstnameError is not empty %}
-                    <div class="error-message">{{ firstnameError }}</div>
-                  {% endif %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <input
                     type="text"
-                    class="form-input form-control"
+                    class="form-input form-control {% if errors['lastanme'] is defined %}is-invalid{% endif %}"
                     id="lastname"
                     placeholder="Sobrenome"
                     name="lastname"
                   />
-                  {% if lastnameError is not empty %}
-                    <div class="error-message">{{ lastnameError }}</div>
-                  {% endif %}
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <input
                     type="email"
-                    class="form-input form-control"
+                    class="form-input form-control {% if errors['email'] is defined %}is-invalid{% endif %}"
                     id="email"
                     placeholder="E-mail"
                     name="email"
                   />
-                  {% if emailError is not empty %}
-                    <div class="error-message">{{ emailError }}</div>
-                  {% endif %}
                 </div>
                 <div class="col-md-6 mb-3">
                   <input
                     type="tel"
-                    class="form-input form-control"
+                    class="form-input form-control {% if errors['telephone'] is defined %}is-invalid{% endif %}"
                     id="telephone"
                     name="telephone"
                     placeholder="Digite seu telefone"
                   />
-                  {% if telephoneError is not empty %}
-                    <div class="error-message">{{ telephoneError }}</div>
-                  {% endif %}
                 </div>
               </div>
               <div>
@@ -88,27 +76,21 @@
                   <div class="col-md-6 mb-3">
                     <input
                       type="password"
-                      class="form-input form-control"
+                      class="form-input form-control {% if errors['password'] is defined %}is-invalid{% endif %}"
                       id="password"
                       name="password"
                       placeholder="Senha"
                     />
-                    {% if passwordError is not empty %}
-                      <div class="error-message">{{ passwordError }}</div>
-                    {% endif %}
                   </div>
                   <div class="col-md-6 mb-3">
                     <input
                       type="password"
-                      class="form-input form-control"
+                      class="form-input form-control {% if errors['confirm-password'] is defined %}is-invalid{% endif %}"
                       id="confirm-password"
                       name="confirm-password"
                       placeholder="Repetir a senha"
                     />
                   </div>
-                    {% if passwordError is not empty %}
-                      <div class="error-message">{{ passwordError }}</div>
-                    {% endif %}
                 </div>
               </div>
               <div class="mb-3">
@@ -124,13 +106,7 @@
                 </label>
               </div>
               <div class="d-grid">
-                <button
-                  type="submit"
-                  class="btn btn-dark text-uppercase"
-                  {% if error is not empty %}disabled{% endif %}
-                >
-                  Criar conta
-                </button>
+                  <button type="submit" class="btn btn-dark text-uppercase">Criar conta</button>
               </div>
             </form>
           </div>
