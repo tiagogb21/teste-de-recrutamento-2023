@@ -8,8 +8,12 @@ class Home extends Controller
 {
     public function index()
     {
-        $this->session->set('customer_id', $this->data['customer_id']);
+        $customer_id = (string) $this->session->get('customer_id');
 
-        $this->load->controller('account/seller');
+        if (isset($customer_id)) {
+            $this->load->controller('account/seller');
+        }
+
+        $this->load->controller('customer/login');
     }
 }

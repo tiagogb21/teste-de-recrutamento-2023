@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Core\Engine\Model;
 
-class Costumer extends Model
+class Customer extends Model
 {
     public function getByEmail(string $email)
     {

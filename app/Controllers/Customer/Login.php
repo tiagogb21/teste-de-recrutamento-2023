@@ -1,30 +1,25 @@
 <?php
 
-namespace App\Controllers\Costumer;
+namespace App\Controllers\Customer;
 
 use Core\Engine\Controller;
 
 class Login extends Controller
 {
-    private $customer = [];
 
     public function loadDependencies()
     {
-        $this->load->model('costumer');
+        $this->load->model('customer');
     }
 
     public function index()
     {
         $this->loadDependencies();
 
-        $this->verifyCostumerExists();
-
         if (
             $this->requestMethodIsPOST()
-            && !empty($this->costumer)
             && $this->fieldsAreValid()
         ) {
-            $this->data['customer_id'] = $this->costumer['customer_id'];
             $this->response->redirect('/account/seller');
         }
 
@@ -38,21 +33,37 @@ class Login extends Controller
         return $_SERVER['REQUEST_METHOD'] == 'POST';
     }
 
-    private function comparePassword()
+    public function comparePassword()
     {
         if (
-            password_verify(
-                $this->request->post['password'],
-                $this->costumer['password']
-            )
+            !$this->teste()
+            || md5($this->request->post['password']) !== $this->teste()['password']
         ) {
-
             $this->errors[] = "Usuário ou senha inválidos";
 
             return false;
         }
 
         return true;
+    }
+
+    public function teste()
+    {
+        $customer = $this->model_customer->getByEmail(
+            $this->request->post['email']
+        );
+
+        if (!$customer) {
+            $this->errors[] = "Usuário ou senha inválidos";
+            return false;
+        }
+
+        if (!empty($customer)) {
+            $customer_id = $customer[0]['customer_id'];
+            $this->session->set('customer_id', $customer_id);
+        }
+
+        return $customer;
     }
 
     private function fieldValidate($key, $field)
@@ -72,16 +83,5 @@ class Login extends Controller
         $this->comparePassword();
 
         return true;
-    }
-
-    private function verifyCostumerExists()
-    {
-        $costumer = $this->model_costumer->getByEmail(
-            $this->request->post['email']
-        );
-
-        if (!empty($costumer)) {
-            $this->customer = $costumer;
-        }
     }
 }

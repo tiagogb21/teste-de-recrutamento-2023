@@ -14,7 +14,7 @@ class History extends Model
             FROM
                 history
             WHERE
-                customer_id=" . $this->session->get('customer_id') . "
+                customer_id='" . $this->session->get('customer_id') . "'
             ORDER BY
                 date_added DESC
         ");

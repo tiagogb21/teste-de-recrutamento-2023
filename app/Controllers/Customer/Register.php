@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Costumer;
+namespace App\Controllers\Customer;
 
 use Core\Engine\Controller;
 
@@ -10,15 +10,19 @@ class Register extends Controller
 
     public function loadDependencies()
     {
-        $this->load->model('costumer/register');
-        $this->load->model('costumer');
+        $this->load->model('customer/register');
+        $this->load->model('customer');
     }
 
     public function index()
     {
         $this->loadDependencies();
 
-        if ($this->requestMethodIsPOST() && $this->fieldsAreValid() && $this->verifyCostumerExists()) {
+        if (
+            $this->requestMethodIsPOST()
+            && $this->fieldsAreValid()
+            && $this->verifyCustomerExists()
+        ) {
             try {
                 $this->registerUser();
             } catch (\Exception $e) {
@@ -69,21 +73,21 @@ class Register extends Controller
         return true;
     }
 
-    private function verifyCostumerExists()
+    private function verifyCustomerExists()
     {
-        return empty($this->model_costumer->getByEmail(
+        return empty($this->model_customer->getByEmail(
             $this->request->post['email']
         ));
     }
 
     private function registerUser()
     {
-        $this->model_costumer_register->register(
+        $this->model_customer_register->register(
             $this->request->post['firstname'],
             $this->request->post['lastname'],
             $this->request->post['email'],
             $this->request->post['telephone'],
-            password_hash($this->request->post['password'], PASSWORD_DEFAULT),
+            md5($this->request->post['password']),
         );
     }
 }

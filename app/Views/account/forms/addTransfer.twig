@@ -53,9 +53,9 @@
 										<label class="control-label mb-2">Conta Bancária:</label>
 										<select class="form-control" name="type" required="">
 											<option selected="" disabled="">Selecione...</option>
-											<option value="checking">Banco 1</option>
-											<option value="checking">Banco 2</option>
-											<option value="checking">Banco 3</option>
+											{% for bank in banks %}
+												<option value="{{ bank }}">{{ bank }}</option>
+											{% endfor %}
 										</select>
 									</div>
 								</div>

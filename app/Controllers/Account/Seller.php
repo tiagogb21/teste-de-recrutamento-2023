@@ -55,6 +55,7 @@ class Seller extends Controller
 
     private function getBalance()
     {
+
         $balance = $this->model_account_balance->get($this->session->get('customer_id'));
 
         $balance['available'] = $this->helper_currency->format($balance['available']);

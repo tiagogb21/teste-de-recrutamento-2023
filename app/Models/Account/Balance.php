@@ -34,7 +34,7 @@ class Balance extends Model
                         CASE
                             WHEN
                                 product_id is not null
-                                    AND
+                                AND
                                 order_id is not null
                             THEN
                                 DATE_ADD(DATE_FORMAT(date_added, '%Y-%m-%d'), INTERVAL 30 DAY) <= NOW()
@@ -47,9 +47,9 @@ class Balance extends Model
                     AND
                         status = 1
             LIMIT 1;
-        ")[0];
+        ");
 
-        $this->available = $available['amount'] ?? 0;
+        $this->available = $available[0]['amount'] ?? 0;
     }
 
     private function getFutureBalance()

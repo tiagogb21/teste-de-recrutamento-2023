@@ -38,7 +38,7 @@ CREATE TABLE `bank` (
 
 LOCK TABLES `bank` WRITE;
 /*!40000 ALTER TABLE `bank` DISABLE KEYS */;
-INSERT INTO `bank` VALUES (1,'Banco do Brasil','Banco do Brasil'),(2,'Santander','C6'),(3,'Itaú','Itaú'),(4,'Caixa','Caixa'),(5,'Bradesco','Bradesco'),(6,'NuBank','NuBank'),(7,'Inter','Inter'),(8,'C6','C6'),(9,'Itaú','Itaú'),(10,'Caixa','Caixa'),(11,'Bradesco','Bradesco'),(12,'NuBank','NuBank'),(13,'Inter','Inter'),(14,'C6','C6');
+INSERT INTO `bank` VALUES (1,'Banco do Brasil','Banco do Brasil'),(2,'Santander','C6'),(3,'Itaú','Itaú'),(4,'Caixa','Caixa'),(5,'Bradesco','Bradesco'),(6,'NuBank','NuBank'),(7,'Inter','Inter');
 /*!40000 ALTER TABLE `bank` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,8 +52,10 @@ DROP TABLE IF EXISTS `bank_account`;
 CREATE TABLE `bank_account` (
   `bank_account_id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int NOT NULL,
+  `type` varchar(45) DEFAULT NULL,
   `bank_id` int NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
+  `agency` int NOT NULL,
+  `account` int NOT NULL,
   PRIMARY KEY (`bank_account_id`),
   KEY `customer_id` (`customer_id`),
   KEY `bank_id` (`bank_id`)
@@ -66,7 +68,7 @@ CREATE TABLE `bank_account` (
 
 LOCK TABLES `bank_account` WRITE;
 /*!40000 ALTER TABLE `bank_account` DISABLE KEYS */;
-INSERT INTO `bank_account` VALUES (1,1,1,'BANCO SOL 002'),(2,1,2,'BANCO BAI 001');
+INSERT INTO `bank_account` VALUES (1, 'Conta Corrente',1,1, 1234,1234567),(2, 'Conta Corrente', 1,2,5678, 8901234);
 /*!40000 ALTER TABLE `bank_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
