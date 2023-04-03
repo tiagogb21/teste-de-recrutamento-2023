@@ -6,8 +6,18 @@ use Core\Engine\Controller;
 
 class Seller extends Controller
 {
+
+    public function __construct($registry)
+    {
+        parent::__construct($registry);
+
+        if (!$this->session->has('customer_id'))
+            $this->response->redirect('/customer/login');
+    }
+
     private function loader()
     {
+        $this->load->model('account/bank');
         $this->load->model('account/balance');
         $this->load->model('account/history');
         $this->load->model('account/product');
@@ -67,6 +77,7 @@ class Seller extends Controller
 
     public function panel()
     {
+        $this->teste = $this->model_account_bank->getAccountInfo();
         $data['selected_tab'] = 1;
         $data['histories'] = $this->model_account_history->getAll();
         $data['balances']  = $this->getBalance();
@@ -87,6 +98,35 @@ class Seller extends Controller
         $this->getForm($data);
     }
 
+
+    public function verifyDate()
+    {
+        $json = file_get_contents('php://input');
+
+        if (!$json) {
+            echo json_encode(array('success' => false, 'message' => 'No data received'));
+            return;
+        }
+
+        $jsonData = json_decode($json, true);
+
+        if (!$jsonData || !isset($jsonData['start_date']) || !isset($jsonData['end_date'])) {
+            echo json_encode(array('success' => false, 'message' => 'Invalid data'));
+            return;
+        }
+
+        $startDate = $jsonData['start_date'];
+        $endDate = $jsonData['end_date'];
+
+        $this->session->set('start_date', $startDate);
+        $this->session->set('end_date', $endDate);
+
+        $response = array('success' => true, 'data' => array('start_date' => $startDate, 'end_date' => $endDate));
+
+        echo json_encode($response);
+    }
+
+
     public function products()
     {
         $data['selected_tab']         = 2;
@@ -99,8 +139,10 @@ class Seller extends Controller
 
     public function bankaccounts()
     {
+        $this->load->model('account/bank');
+        $data['account_infos'] = $this->model_account_bank->getAccountInfo();
         $data['selected_tab'] = 3;
-        $data['tabBody'] = $this->load->view('account/tabs/bankAccount');
+        $data['tabBody'] = $this->load->view('account/tabs/bankAccount', $data);
 
         $this->getForm($data);
     }

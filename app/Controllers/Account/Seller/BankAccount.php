@@ -26,7 +26,7 @@ class BankAccount extends Controller
                 $this->errors[] = $e->getMessage();
             }
 
-            // $this->response->redirect('/account/seller');
+            $this->response->redirect('/account/seller');
         }
 
         $this->getForm();

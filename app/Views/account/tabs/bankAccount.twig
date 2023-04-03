@@ -15,55 +15,38 @@
 					<th scope="col">Opções</th>
 				</tr>
 			</thead>
+			<p>
+			asdfasdf
+			</p>
+			<p>
+			{{ account_infos[0]['type'] }}
+			</p>
 			<tbody>
-				<tr>
-					<td scope="row">Banco 1</td>
-					<td>Tipo 1</td>
-					<td>Agência 1</td>
-					<td>000001</td>
-					<td>
-						<div class="d-flex justify-content-around">
-							<button data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top" style="height: 37px;" type="button" class="btn btn-dark">
-								<i class="fa-sharp fa-solid fa-pen"></i>
-							</button>
-							<button type="button" class="btn btn-dark">
-								<i class="fa-solid fa-trash"></i>
-							</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td scope="row">Banco 2</td>
-					<td>Tipo 2</td>
-					<td>Agência 2</td>
-					<td>000002</td>
-					<td>
-						<div class="d-flex justify-content-around">
-							<button disabled style="height: 37px;" type="button" class="btn btn-dark">
-								<i class="fa-sharp fa-solid fa-pen"></i>
-							</button>
-							<button disabled type="button" class="btn btn-dark">
-								<i class="fa-solid fa-trash"></i>
-							</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td scope="row">Banco 2</td>
-					<td>Tipo 3</td>
-					<td>Agência 3</td>
-					<td>000003</td>
-					<td>
-						<div class="d-flex justify-content-around">
-							<button disabled style="height: 37px;" type="button" class="btn btn-dark">
-								<i class="fa-sharp fa-solid fa-pen"></i>
-							</button>
-							<button disabled type="button" class="btn btn-dark">
-								<i class="fa-solid fa-trash"></i>
-							</button>
-						</div>
-					</td>
-				</tr>
+				{% for account_info in account_infos %}
+					<tr>
+						<td scope="row">{{ account_info.bank_account_id }}</td>
+						<td>{{ account_info.type }}</td>
+						<td>{{ account_info.agency }}</td>
+						<td>{{ account_info.account }}</td>
+						<td>
+							<div class="d-flex justify-content-around">
+								<button
+									data-bs-toggle="tooltip"
+									data-bs-placement="top"
+									data-bs-title="Tooltip on top"
+									style="height: 37px;"
+									type="button"
+									class="btn btn-dark"
+								>
+									<i class="fa-sharp fa-solid fa-pen"></i>
+								</button>
+								<button type="button" class="btn btn-dark">
+									<i class="fa-solid fa-trash"></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
 			</tbody>
 		</table>
 	</div>
