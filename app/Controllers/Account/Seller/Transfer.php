@@ -10,6 +10,7 @@ class Transfer extends Controller
     {
         $this->load->model('account/bank');
         $this->load->model('account/balance');
+        $this->load->model('account/transfer');
         $this->load->helper('currency');
     }
 
@@ -21,27 +22,30 @@ class Transfer extends Controller
 
     public function getForm()
     {
-        // if (
-        //     $this->requestMethodIsPOST()
-        //     && $this->verifyIfCostumerCanGetValue()
-        // ) {
-        //     try {
-        //         $this->makeTransfer();
-        //     } catch (\Exception $e) {
-        //         $this->errors[] = $e->getMessage();
-        //     }
+        if (
+            $this->requestMethodIsPOST()
+            && $this->verifyIfCostumerCanGetValue()
+            && $this->verifyAmount()
+        ) {
+            try {
+                $this->registerTransfer();
+            } catch (\Exception $e) {
+                $this->errors[] = $e->getMessage();
+            }
 
-        //     $this->response->redirect('/seller/transfers');
-        // }
+            $this->response->redirect('/seller/transfers');
+        }
 
         $banks = $this->model_account_bank->getAllAccounts();
 
         $account_data = array_map(function ($bank) {
             $bank_name = $this->model_account_bank->getBankName($bank["bank_id"]);
-            return "BANCO: $bank_name, CONTA: " . $bank["account"] . " AGÊNCIA: " . $bank["agency"];
+            return
+                [
+                    'name' => "BANCO: $bank_name, CONTA: " . $bank["account"] . ", AGÊNCIA: " . $bank["agency"],
+                    'id' => $bank["bank_id"]
+                ];
         }, $banks);
-
-        var_dump($account_data);
 
         $data['left_menu'] = $this->load->view('account/leftMenu');
 
@@ -52,6 +56,14 @@ class Transfer extends Controller
         $this->response->setOutput(
             $this->load->view('account/forms/addTransfer', $data)
         );
+    }
+
+    public function verifyAmount()
+    {
+        $inputValue = $this->request->post['value'];
+        $balance = $this->getBalance()['available'];
+        var_dump($inputValue > $balance);
+        return $inputValue > $balance;
     }
 
     private function getBalance()
@@ -77,16 +89,14 @@ class Transfer extends Controller
         return $value > 0 && $value <= $balance['available'];
     }
 
-    private function makeTransfer()
+    private function registerTransfer()
     {
-        $accountType = $this->request->post['type'];
-        $value = $this->request->post['value'];
+        $accountId = $this->request->post['id'];
+        $accountValue = $this->request->post['value'];
 
-        var_dump($accountType);
-
-        $this->model_account_transfer->transfer(
-            $this->request->post['type'],
-            $this->request->post['value'],
+        $this->model_account_transfer->registerTransfer(
+            $accountId,
+            $accountValue,
         );
     }
 }

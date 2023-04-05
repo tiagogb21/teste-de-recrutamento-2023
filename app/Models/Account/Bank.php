@@ -47,11 +47,11 @@ class Bank extends Model
         $bank_id = $this->getBankId($bank_name);
 
         $query = "INSERT INTO bank_account (
-            $customer_id,
-            $type,
-            $bank_id,
-            $agency,
-            $account
+            customer_id,
+            type,
+            bank_id,
+            agency,
+            account
         ) VALUES (
             '" . $customer_id . "',
             '" . $type . "',
@@ -60,9 +60,7 @@ class Bank extends Model
             '" . $account . "'
         )";
 
-        $stmt = $this->db->query($query);
-
-        return true;
+        return $this->db->query($query);
     }
 
     public function checkAccount($agency, $account)

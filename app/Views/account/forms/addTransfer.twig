@@ -37,9 +37,9 @@
 								<h5>Adicionar Transferência</h5>
 							</div>
 							<div class="col-md-12 mb-3">
-								<p>
+								<p id="available">
 									<b>Saldo Disponível:</b>
-									{{ balances.available }}
+									R$ {{ balances.available }}
 								</p>
 							</div>
 							<form
@@ -52,12 +52,12 @@
 											<label class="control-label mb-2">Conta Bancária:</label>
 											<select
 												class="form-control"
-												name="type"
+												name="id"
 												id="select-bank"
 											>
 												<option selected="" disabled="">Selecione...</option>
 												{% for bank in banks %}
-													<option value="{{ bank }}">{{ bank }}</option>
+													<option value="{{ bank.id }}">{{ bank.name }}</option>
 												{% endfor %}
 											</select>
 										</div>
@@ -68,15 +68,17 @@
 											<input
 												placeholder="R$"
 												class="form-control"
-												type="text"
+												type="number"
 												name="value"
+												id="value"
 											>
 										</div>
 									</div>
 									<div class="col-md-12 d-flex justify-content-end">
 										<button
-											type="submit"
+											type="button"
 											class="btn btn-dark"
+											id="transfer"
 										>
 											SOLICITAR TRANSFERÊNCIA
 										</button>
@@ -94,26 +96,15 @@
 	</body>
 
 	<script>
-		let a;
-		const selectBank = document.getElementById('select-bank');
-		selectBank.addEventListener('click', (e) => {
-			a = e.target.value;
-		});
-		return fetch('/account/seller/verifydate', {
-			method: 'POST',
-			body: JSON.stringify(storeData),
-			headers: {
-				'Content-Type': 'application/json',
+		const transfer = document.getElementById('transfer');
+
+		transfer.addEventListener('click', () => {
+			const available = document.getElementById('available');
+			const value = document.getElementById('value');
+
+			if(value < available) {
+				transfer.type = 'submit';
 			}
 		})
-		.then(response => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				throw new Error('Network response was not ok');
-			}
-		})
-		.then(data => console.log(data))
-		.catch(error => console.error(error));
 	</script>
 {% endblock %}
