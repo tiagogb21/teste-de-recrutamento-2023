@@ -33,7 +33,7 @@ class Transfer extends Controller
                 $this->errors[] = $e->getMessage();
             }
 
-            $this->response->redirect('/seller/transfers');
+            // $this->response->redirect('/account/seller/transfers');
         }
 
         $banks = $this->model_account_bank->getAllAccounts();
@@ -62,15 +62,18 @@ class Transfer extends Controller
     {
         $inputValue = $this->request->post['value'];
         $balance = $this->getBalance()['available'];
-        var_dump($inputValue > $balance);
         return $inputValue > $balance;
     }
 
     private function getBalance()
     {
+        $inputValue = $this->request->post['value'];
+
         $balance = $this->model_account_balance->get($this->session->get('customer_id'));
 
-        $balance['available'] = $this->helper_currency->format($balance['available']);
+        $newValue = $balance['available'] - $inputValue;
+
+        $balance['available'] = $this->helper_currency->format($newValue);
 
         return $balance;
     }
@@ -92,9 +95,9 @@ class Transfer extends Controller
     private function registerTransfer()
     {
         $accountId = $this->request->post['id'];
-        $accountValue = $this->request->post['value'];
+        $accountValue = $this->request->post['value'] * -1;
 
-        $this->model_account_transfer->registerTransfer(
+        return $this->model_account_transfer->registerTransfer(
             $accountId,
             $accountValue,
         );

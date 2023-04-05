@@ -22,6 +22,7 @@ class Seller extends Controller
         $this->load->model('account/history');
         $this->load->model('account/product');
         $this->load->model('account/transaction');
+        $this->load->model('account/transfer');
         $this->load->model('account/history_type');
         $this->load->helper('currency');
     }
@@ -65,7 +66,6 @@ class Seller extends Controller
 
     private function getBalance()
     {
-
         $balance = $this->model_account_balance->get($this->session->get('customer_id'));
 
         $balance['available'] = $this->helper_currency->format($balance['available']);
@@ -153,8 +153,6 @@ class Seller extends Controller
 
         $this->getForm($data);
     }
-
-
 
     public function getForm($data)
     {

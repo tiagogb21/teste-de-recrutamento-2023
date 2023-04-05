@@ -22,6 +22,7 @@ class Balance extends Model
         return $this->balances();
     }
 
+    // É o saldo da venda dos produtos que aconteceram a mais de 30 dias
     private function getAvailableBalance()
     {
         $customer_id = (string) $this->session->get('customer_id');
@@ -32,20 +33,20 @@ class Balance extends Model
             WHERE
                     status = 1
                 AND
-                    customer_id = $customer_id
-            GROUP BY
-                customer_id;    
+                    DATE_ADD(DATE_FORMAT(date_added, '%Y-%m-%d'), INTERVAL 30 DAY) <= NOW()
+                AND
+                    customer_id = $customer_id;    
         ");
 
         $this->available = $available[0]['amount'] ?? 0;
     }
 
-
+    // É o saldo da venda dos produtos que aconteceram em menos de 30 dias
     private function getFutureBalance()
     {
         $future = @$this->db->query("
             SELECT
-                abs(value) AS amount
+                SUM(value) AS amount
             FROM
                 transaction
             WHERE
@@ -56,8 +57,6 @@ class Balance extends Model
                     order_id is not null
                 AND
                     DATE_ADD(DATE_FORMAT(date_added, '%Y-%m-%d'), INTERVAL 30 DAY) > NOW()
-                AND
-                    value < 0
                 AND
                     status = 1
             LIMIT 1;
@@ -70,7 +69,7 @@ class Balance extends Model
     {
         $blocked = @$this->db->query("
             SELECT
-                abs(value) AS amount
+                SUM(value) AS amount
             FROM
                 transaction
             WHERE

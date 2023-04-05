@@ -19,22 +19,6 @@ class Transfer extends Model
         return @$this->db->query($query);
     }
 
-    public function getBankAccount(
-        $agency,
-        $account
-    ) {
-        $query = "
-            SELECT bank_account_id
-                FROM bank_account
-                WHERE
-                    agency = '$agency'
-                    account = '$account'
-            ;
-        ";
-
-        return $this->db->query($query);
-    }
-
     public function registerTransfer(
         $accountId,
         $amount,
@@ -43,17 +27,43 @@ class Transfer extends Model
         $status = 1;
 
         $query = "
+            START TRANSACTION;
+
             INSERT INTO transfer (
                 customer_id,
                 bank_account_id,
                 amount,
                 status
-            ) VALUES (
-                '" . $customer_id . "',
-                '" . $accountId . "',
-                '" . $amount . "',
-                '" . $status . "'
             )
+            VALUES (
+                '$customer_id',
+                '$accountId',
+                '$amount',
+                '$status'
+            );
+            
+            SET @last_transfer_id = LAST_INSERT_ID();
+            
+            INSERT INTO transaction (
+                transfer_id,
+                customer_id,
+                order_id,
+                product_id,
+                value,
+                status,
+                date_added
+            )
+            VALUES (
+                @last_transfer_id,
+                '$customer_id',
+                NULL,
+                NULL,
+                '$amount',
+                $status,
+                NOW()
+            );
+            
+            COMMIT;
         ";
 
         return $this->db->query($query);
