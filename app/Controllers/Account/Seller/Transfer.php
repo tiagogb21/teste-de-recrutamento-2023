@@ -25,7 +25,6 @@ class Transfer extends Controller
         if (
             $this->requestMethodIsPOST()
             && $this->verifyIfCostumerCanGetValue()
-            && $this->verifyAmount()
         ) {
             try {
                 $this->registerTransfer();
@@ -33,7 +32,7 @@ class Transfer extends Controller
                 $this->errors[] = $e->getMessage();
             }
 
-            // $this->response->redirect('/account/seller/transfers');
+            $this->response->redirect('/account/seller/transfers');
         }
 
         $banks = $this->model_account_bank->getAllAccounts();
@@ -56,13 +55,6 @@ class Transfer extends Controller
         $this->response->setOutput(
             $this->load->view('account/forms/addTransfer', $data)
         );
-    }
-
-    public function verifyAmount()
-    {
-        $inputValue = $this->request->post['value'];
-        $balance = $this->getBalance()['available'];
-        return $inputValue > $balance;
     }
 
     private function getBalance()

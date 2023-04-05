@@ -148,8 +148,16 @@ class Seller extends Controller
 
     public function transfers()
     {
+        $this->loader();
+
+        $banks = $this->model_account_bank->getAllAccounts();
+
+        $transactions = $this->model_account_transaction->getAll();
+
+        $data['transactions'] = $transactions;
+
         $data['selected_tab'] = 4;
-        $data['tabBody'] = $this->load->view('account/tabs/transfer');
+        $data['tabBody'] = $this->load->view('account/tabs/transfer', $data);
 
         $this->getForm($data);
     }

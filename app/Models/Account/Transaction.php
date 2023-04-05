@@ -8,7 +8,8 @@ class Transaction extends Model
 {
     public function getOne(int $id)
     {
-        return @$this->db->query("
+        return @$this->db->query(
+            "
             SELECT
                 *
             FROM
@@ -17,6 +18,19 @@ class Transaction extends Model
                 transaction_id=$id
             AND
                 customer_id=" . $this->session->get('customer_id')
-            )[0];
+        )[0];
+    }
+
+    public function getAll()
+    {
+        return @$this->db->query(
+            "
+            SELECT
+                *
+            FROM
+                transaction
+            WHERE
+                customer_id=" . $this->session->get('customer_id')
+        );
     }
 }

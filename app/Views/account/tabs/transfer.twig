@@ -19,14 +19,16 @@
 					<th scope="col">Data</th>
 				</tr>
 			</thead>
-			{# <tbody>
+			<tbody>
+			{% for transaction in transactions %}
 				<tr>
-					<td scope="row">Banco 1</td>
-					<td>R$ 000,00</td>
-					<td>Status 1</td>
-					<td>01/03/2022</td>
+					<td scope="row"></td>
+					<td scope="row">{{ transaction.value|abs }}</td>
+					<td scope="row">{{ transaction.status }}</td>
+					<td scope="row">{{ transaction.date_added }}</td>
 				</tr>
-			</tbody> #}
+			{% endfor %}
+			<tbody>
 		</table>
 	</div>
 </div>
