@@ -14,6 +14,8 @@ class Login extends Controller
 
     public function index()
     {
+        session_unset();
+
         $this->loadDependencies();
 
         if (
@@ -36,8 +38,8 @@ class Login extends Controller
     public function comparePassword()
     {
         if (
-            !$this->teste()
-            || md5($this->request->post['password']) !== $this->teste()['password']
+            !$this->login()
+            || md5($this->request->post['password']) !== $this->login()['password']
         ) {
             $this->errors[] = "Usuário ou senha inválidos";
 
@@ -47,7 +49,7 @@ class Login extends Controller
         return true;
     }
 
-    public function teste()
+    public function login()
     {
         $customer = $this->model_customer->getByEmail(
             $this->request->post['email']

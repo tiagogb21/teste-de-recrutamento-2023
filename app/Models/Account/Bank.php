@@ -46,14 +46,6 @@ class Bank extends Model
 
         $bank_id = $this->getBankId($bank_name);
 
-        var_dump([
-            $type,
-            $customer_id,
-            $bank_id,
-            $agency,
-            $account
-        ]);
-
         $query = "INSERT INTO bank_account (
             $customer_id,
             $type,
@@ -69,8 +61,6 @@ class Bank extends Model
         )";
 
         $stmt = $this->db->query($query);
-
-        var_dump($stmt);
 
         return true;
     }

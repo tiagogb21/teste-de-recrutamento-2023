@@ -77,7 +77,6 @@ class Seller extends Controller
 
     public function panel()
     {
-        $this->teste = $this->model_account_bank->getAccountInfo();
         $data['selected_tab'] = 1;
         $data['histories'] = $this->model_account_history->getAll();
         $data['balances']  = $this->getBalance();
@@ -154,6 +153,8 @@ class Seller extends Controller
 
         $this->getForm($data);
     }
+
+
 
     public function getForm($data)
     {
