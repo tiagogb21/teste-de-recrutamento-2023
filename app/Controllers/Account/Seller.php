@@ -153,7 +153,6 @@ class Seller extends Controller
         $banks = $this->model_account_bank->getAllAccounts();
 
         $transactions = $this->model_account_transaction->getAll();
-        var_dump($transactions);
 
         $data['transactions'] = $transactions;
 

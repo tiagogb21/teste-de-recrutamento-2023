@@ -24,7 +24,13 @@ class Transaction extends Model
     public function getAll()
     {
         $query = "
-        SELECT bank.long_name AS nome_do_banco, bank_account.account AS numero_da_conta, bank_account.agency AS numero_da_agencia, transaction.date_added, transaction.value, transaction.status
+        SELECT bank.long_name AS nome_do_banco, bank_account.account AS numero_da_conta, bank_account.agency AS numero_da_agencia, transaction.date_added, transaction.value, 
+        CASE transaction.status
+            WHEN 0 THEN 'Negado'
+            WHEN 1 THEN 'Aguardando'
+            WHEN 2 THEN 'Realizado'
+            ELSE 'Desconhecido'
+        END AS status
         FROM transaction
         INNER JOIN transfer ON transaction.transfer_id = transfer.transfer_id
         INNER JOIN bank_account ON transfer.bank_account_id = bank_account.bank_account_id
