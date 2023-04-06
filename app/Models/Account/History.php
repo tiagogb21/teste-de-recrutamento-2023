@@ -19,4 +19,17 @@ class History extends Model
                 date_added DESC
         ");
     }
+
+    public function updateHistoryByDateRange($start_date, $end_date)
+    {
+        $customer_id = (string) $this->session->get('customer_id');
+
+        $sql = "UPDATE account_history 
+                SET date_added = DATE_ADD(date_added, INTERVAL 1 DAY) 
+                WHERE customer_id = '" . $customer_id . "' 
+                AND date_added >= STR_TO_DATE('" . $start_date . "', '%d/%m/%Y') 
+                AND date_added <= STR_TO_DATE('" . $end_date . "', '%d/%m/%Y')";
+
+        $this->db->query($sql);
+    }
 }

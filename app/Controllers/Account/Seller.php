@@ -81,6 +81,13 @@ class Seller extends Controller
         $data['histories'] = $this->model_account_history->getAll();
         $data['balances']  = $this->getBalance();
 
+        if ($this->request->server['REQUEST_METHOD'] == 'POST' && isset($this->request->post['start_date']) && isset($this->request->post['end_date'])) {
+            $start_date = $this->request->post['start_date'];
+            $end_date = $this->request->post['end_date'];
+
+            $this->model_account_history->updateHistoryByDateRange($this->session->get('customer_id'), $start_date, $end_date);
+        }
+
         foreach ($data['histories'] as &$history) {
             $history['history_type'] = $this->model_account_history_type->getOne($history['history_type_id']);
             $history['transaction']  = $this->model_account_transaction->getOne($history['transaction_id']);
@@ -149,8 +156,6 @@ class Seller extends Controller
     public function transfers()
     {
         $this->loader();
-
-        $banks = $this->model_account_bank->getAllAccounts();
 
         $transactions = $this->model_account_transaction->getAll();
 
