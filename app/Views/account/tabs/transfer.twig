@@ -22,7 +22,11 @@
 			<tbody>
 			{% for transaction in transactions %}
 				<tr>
-					<td scope="row"></td>
+					<td scope="row">
+						BANCO: {{ transaction.nome_do_banco }} | 
+						CONTA: {{ transaction.numero_da_conta }} |
+						AGÊNCIA: {{ transaction.numero_da_agencia }}
+					</td>
 					<td scope="row">{{ transaction.value|abs }}</td>
 					<td scope="row">{{ transaction.status }}</td>
 					<td scope="row">{{ transaction.date_added }}</td>
